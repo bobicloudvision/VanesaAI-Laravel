@@ -50,7 +50,7 @@
                 "Как си ти сега"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'EmotionalStatus)}}"
+                "__robot_action_emotional_status__"
             ]
         },
         {
@@ -75,7 +75,7 @@
                 "ще ти еба путката майна"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'EmotionalStatusDown')}}"
+                "__robot_action_emotional_status_down__"
             ]
         },
         {
@@ -94,7 +94,7 @@
                 "ти си страхотна"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'EmotionalStatusUp')}}"
+                "__robot_action_emotional_status_up__"
             ]
         },
         {
@@ -112,7 +112,7 @@
                 "на какво се дължат тия нерви"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'EmotionalStatusExplain')}}"
+                "__robot_action_emotional_status_explain__"
             ]
         },
         {
@@ -179,7 +179,7 @@
                 "хаха"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'EmotionalAnswer')}}"
+                "__robot_action_emotional_answer__"
             ]
         },
         {
@@ -259,7 +259,7 @@
                 "ти робот ли си"
             ],
             "responses": [
-                "Аз съм {{$robot_name}} :)"
+                "Аз съм __robot_name__ :)"
             ]
         },
         {
@@ -271,7 +271,7 @@
                 "кажи ми час"
             ],
             "responses": [
-                "Часът в момента е {{$time_now}}, а датата е {{$date_now}}"
+                "Часът в момента е __time_now__, а датата е __date_now__"
             ]
         },
         {
@@ -286,7 +286,7 @@
                 "забрави за разговора ни"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'DeleteConversation')}}"
+                "__robot_action_delete_conversation__"
             ]
         }
     ]

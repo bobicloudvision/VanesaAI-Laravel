@@ -46,6 +46,9 @@ class RobotTalk
      */
     public static function makeAction($conversationId = false, $action = '')
     {
+        $action = 'Actions\\' . $action;
+
+        dd($action);
 
         if (class_exists($action)) {
             $newAction = new $action();
