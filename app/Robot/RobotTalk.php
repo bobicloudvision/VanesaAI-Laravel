@@ -46,7 +46,12 @@ class RobotTalk
      */
     public static function makeAction($conversationId = false, $action = '')
     {
-        return "Мислих.. но не знам как да ти отговоря...";
+
+        if ($action == 'emotional_status_up') {
+
+        }
+
+        return $action;
     }
 
     public static function noResponse($conversationId = false)
