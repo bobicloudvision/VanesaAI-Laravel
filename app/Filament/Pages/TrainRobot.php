@@ -19,7 +19,11 @@ class TrainRobot extends Page
 
         $mainDir = dirname(dirname(dirname(__DIR__)));
 
-        $process = new Process(['/opt/homebrew/bin/python3', $mainDir . '/python/dialog_nltk/train.py']);
+        // which python
+
+        $getPythonPath = '/Users/bobi/opt/anaconda3/bin/python';
+
+        $process = new Process([$getPythonPath, $mainDir . '/python/dialog_nltk/train.py']);
         $process->run();
 
         if (!$process->isSuccessful()) {
