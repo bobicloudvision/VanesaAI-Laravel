@@ -15,6 +15,9 @@ class TrainRobot extends Page
     {
         $this->log = 'Start training...';
 
-        
+        shell_exec("python /python/dialog_nltk/train.py");
+
+        $this->log = 'Done!';
+
     }
 }
