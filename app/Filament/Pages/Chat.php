@@ -4,10 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
-use App\Robot\RobotTalk;
 use Filament\Pages\Page;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 
 class Chat extends Page
 {
@@ -48,16 +45,6 @@ class Chat extends Page
         $message->conversation_id = $findConversation->id;
         $message->message = $this->message;
         $message->send_by = ConversationMessage::SEND_BY_USER;
-        $message->save();
-
-        $talk = new RobotTalk();
-        $talk->setInput($this->message);
-        $robotResponse = $talk->getResponse();
-
-        $message = new ConversationMessage();
-        $message->conversation_id = $findConversation->id;
-        $message->message = $robotResponse;
-        $message->send_by = ConversationMessage::SEND_BY_ROBOT;
         $message->save();
 
         $this->message = '';

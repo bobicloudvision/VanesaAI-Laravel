@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
+use App\Robot\RobotTalk;
 use Illuminate\Console\Command;
 
 class RobotConversationCheck extends Command
@@ -30,12 +31,36 @@ class RobotConversationCheck extends Command
     public function handle()
     {
 
-        $findConversations = Conversation::get();
-        foreach ($findConversations as $conversation) {
-            $findMessage = ConversationMessage::where('conversation_id', $conversation->id)->orderBy('id','desc')->first();
-            if ($findMessage->send_by == ConversationMessage::SEND_BY_ROBOT) {
+        while(true) {
+            $findConversations = Conversation::get();
+            foreach ($findConversations as $conversation) {
+                $findMessage = ConversationMessage::where('conversation_id', $conversation->id)->orderBy('id', 'desc')->first();
 
+                if ($findMessage->send_by == ConversationMessage::SEND_BY_USER) {
+
+                    $talk = new RobotTalk();
+                    $talk->setInput($findMessage->message);
+                    $robotResponse = $talk->getResponse();
+
+                    $newMessage = new ConversationMessage();
+                    $newMessage->send_by = ConversationMessage::SEND_BY_ROBOT;
+                    $newMessage->conversation_id = $conversation->id;
+                    $newMessage->message = $robotResponse;
+                    $newMessage->save();
+                }
+
+                /* if ($findMessage->send_by == ConversationMessage::SEND_BY_ROBOT) {
+
+                     $newMessage = new ConversationMessage();
+                     $newMessage->send_by = ConversationMessage::SEND_BY_ROBOT;
+                     $newMessage->conversation_id = $conversation->id;
+                     $newMessage->message = 'Защо млъкна?';
+                     $newMessage->save();
+
+                 }*/
             }
+
+            sleep(60);
         }
 
         return 0;

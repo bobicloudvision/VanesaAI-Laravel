@@ -1,10 +1,16 @@
 <x-filament::page>
 
     <script>
-        window.addEventListener('messageSent', event => {
+        function scrollChat() {
             const message = document.getElementById('js-conversation-messages');
             message.scrollTop = message.scrollHeight;
+        }
+        window.addEventListener('messageSent', event => {
+            scrollChat();
         });
+        setInterval(function () {
+            scrollChat();
+        }, 4000);
     </script>
 
     <div id="js-conversation-messages" style="max-height: 500px; overflow-y: scroll" wire:poll.keep-alive>
