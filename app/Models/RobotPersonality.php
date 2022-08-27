@@ -11,4 +11,9 @@ class RobotPersonality extends Model
 
     public $table = 'robot_personality';
 
+    public $fillable = [
+        'personality_key',
+        'personality_value'
+    ];
+
 }
