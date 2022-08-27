@@ -18,7 +18,9 @@ return new class extends Migration
 
             $table->integer('conversation_id');
 
-            $table->enum('send_by', ['USER', 'ROBOT']);
+            $table->string('send_by');
+            $table->string('status');
+
             $table->integer('user_id')->nullable();
             $table->string('message');
 

@@ -38,6 +38,17 @@ class RobotTalk
         return $this->parseResponse($robotResponse);
     }
 
+    /**
+     * @param $conversationId
+     * @param $action
+     * @return string
+     * Example: {{RobotTalk::makeAction($conversation_id, 'emotional_status_explain')}}
+     */
+    public static function makeAction($conversationId = false, $action = '')
+    {
+        return "Мислих.. но не знам как да ти отговоря...";
+    }
+
     public static function noResponse($conversationId = false)
     {
         return "Мислих.. но не знам как да ти отговоря...";

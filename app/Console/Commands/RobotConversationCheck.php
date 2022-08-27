@@ -34,7 +34,10 @@ class RobotConversationCheck extends Command
         while(true) {
             $findConversations = Conversation::get();
             foreach ($findConversations as $conversation) {
+
                 $findMessage = ConversationMessage::where('conversation_id', $conversation->id)->orderBy('id', 'desc')->first();
+                $findMessage->status = ConversationMessage::STATUS_SEEN;
+                $findMessage->save();
 
                 if ($findMessage->send_by == ConversationMessage::SEND_BY_USER) {
 
