@@ -3,6 +3,8 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class TrainRobot extends Page
 {
@@ -15,9 +17,18 @@ class TrainRobot extends Page
     {
         $this->log = 'Start training...';
 
-        shell_exec("python /python/dialog_nltk/train.py");
+        $mainDir = dirname(dirname(dirname(__DIR__)));
 
-        $this->log = 'Done!';
+        $process = new Process(['python', $mainDir . '/python/dialog_nltk/train.py']);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $this->log = $process->getOutput();
+
+       // $this->log = 'Done!';
 
     }
 }
