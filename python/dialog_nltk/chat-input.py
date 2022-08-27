@@ -47,4 +47,4 @@ if prob.item() > 0.75:
         if tag == intent["tag"]:
             print(random.choice(intent['responses']))
 else:
-    print("{{no_response}}")
+    print("{{RobotTalk::noResponse($conversation_id)}}")

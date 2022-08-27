@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
+use App\Robot\RobotTalk;
 use Filament\Pages\Page;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
@@ -49,19 +50,9 @@ class Chat extends Page
         $message->send_by = ConversationMessage::SEND_BY_USER;
         $message->save();
 
-
-        // Save Robot Response
-        $mainDir = dirname(dirname(dirname(__DIR__)));
-        $getPythonPath = '/Users/bobi/opt/anaconda3/bin/python';
-
-        $process = new Process([$getPythonPath, $mainDir . '/python/dialog_nltk/chat-input.py', $this->message]);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        $robotResponse = $process->getOutput();
+        $talk = new RobotTalk();
+        $talk->setInput($this->message);
+        $robotResponse = $talk->getResponse();
 
         $message = new ConversationMessage();
         $message->conversation_id = $findConversation->id;
