@@ -30,9 +30,9 @@ class TrainRobot extends Page
                 'responses'=>$intent->responses()->get()->pluck('value')->toArray()
             ];
         }
-        $saveIntents = json_encode(['intents'=>$saveIntents], JSON_PRETTY_PRINT);
+        $saveIntents = json_encode(['intents'=>$saveIntents], JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
 
-        file_get_contents($mainDir . '/python/dialog_nltk/intents.json', $saveIntents);
+        file_put_contents($mainDir . '/python/dialog_nltk/intents.json', $saveIntents);
 
         // which python
         $getPythonPath = '/Users/bobi/opt/anaconda3/bin/python';
