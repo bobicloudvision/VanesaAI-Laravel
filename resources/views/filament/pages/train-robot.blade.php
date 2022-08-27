@@ -10,7 +10,7 @@
                Start Training
             </x-filament::button>
             <br />
-            
+
             {!! $log !!}
 
         </x-filament::form>
