@@ -7,7 +7,7 @@
         });
     </script>
 
-    <div id="js-conversation-messages" style="max-height: 500px; overflow-y: scroll">
+    <div id="js-conversation-messages" style="max-height: 500px; overflow-y: scroll" wire:poll.keep-alive>
     @foreach($conversationMessages as $message)
             <x-filament::card class="col-span-12" style="margin-top:20px">
         <div class="flex items-center">
