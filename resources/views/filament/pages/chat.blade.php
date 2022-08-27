@@ -15,9 +15,9 @@
 
 
                 @if($message->send_by == \App\Models\ConversationMessage::SEND_BY_USER)
-                    <img class="w-12 h-12 rounded-full" src="{{url('avatars/avatar.jpg')}}" alt="">
+                    <img class="w-20 h-20 rounded-full" src="{{url('avatars/avatar.jpg')}}" alt="">
                 @else
-                    <img class="w-12 h-12 rounded-full" src="{{url('avatars/vanesa.jpg')}}" alt="">
+                    <img class="w-20 h-20 rounded-full" src="{{url('avatars/vanesa.jpg')}}" alt="">
                 @endif
 
                 <span class="inline-flex absolute right-0 bottom-0 justify-center items-center w-6 h-6 bg-blue-600 rounded-full">
