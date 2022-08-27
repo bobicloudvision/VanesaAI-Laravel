@@ -47,7 +47,7 @@ class RobotTalk
     public static function makeAction($conversationId = false, $action = '')
     {
 
-        if ($action == 'emotional_status_up') {
+        if ($action == 'EmotionalStatusUp') {
 
         }
 

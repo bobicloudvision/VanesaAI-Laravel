@@ -50,7 +50,7 @@
                 "Как си ти сега"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'emotional_status)}}"
+                "{{RobotTalk::makeAction($conversation_id, 'EmotionalStatus)}}"
             ]
         },
         {
@@ -75,7 +75,7 @@
                 "ще ти еба путката майна"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'emotional_status_down')}}"
+                "{{RobotTalk::makeAction($conversation_id, 'EmotionalStatusDown')}}"
             ]
         },
         {
@@ -94,7 +94,7 @@
                 "ти си страхотна"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'emotional_status_up')}}"
+                "{{RobotTalk::makeAction($conversation_id, 'EmotionalStatusUp')}}"
             ]
         },
         {
@@ -112,7 +112,7 @@
                 "на какво се дължат тия нерви"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'emotional_status_explain')}}"
+                "{{RobotTalk::makeAction($conversation_id, 'EmotionalStatusExplain')}}"
             ]
         },
         {
@@ -179,7 +179,7 @@
                 "хаха"
             ],
             "responses": [
-                "{{RobotTalk::makeAction($conversation_id, 'emotional_answer')}}"
+                "{{RobotTalk::makeAction($conversation_id, 'EmotionalAnswer')}}"
             ]
         },
         {
