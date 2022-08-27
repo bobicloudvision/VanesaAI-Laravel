@@ -1,7 +1,7 @@
 <?php
 namespace App\Robot\Actions;
 
-class EmotionalStatus
+class EmotionalStatus extends DefaultAction
 {
 
 }

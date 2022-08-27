@@ -1,7 +1,7 @@
 <?php
 namespace App\Robot\Actions;
 
-class PersonalityName
+class PersonalityName extends DefaultAction
 {
 
 }

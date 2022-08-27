@@ -1,7 +1,7 @@
 <?php
 namespace App\Robot\Actions;
 
-class PersonalityYears
+class PersonalityYears extends DefaultAction
 {
 
 }

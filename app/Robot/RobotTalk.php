@@ -42,16 +42,18 @@ class RobotTalk
      * @param $conversationId
      * @param $action
      * @return string
-     * Example: {{RobotTalk::makeAction($conversation_id, 'emotional_status_explain')}}
+     * Example: {{RobotTalk::makeAction($conversation_id, 'EmotionalStatusExplain')}}
      */
     public static function makeAction($conversationId = false, $action = '')
     {
 
-        if ($action == 'EmotionalStatusUp') {
-
+        if (class_exists($action)) {
+            $newAction = new $action();
+            $newAction->setCnversationId($conversationId);
+            return $newAction->make();
         }
 
-        return $action;
+        return "Не знам какво да направя...";
     }
 
     public static function noResponse($conversationId = false)
