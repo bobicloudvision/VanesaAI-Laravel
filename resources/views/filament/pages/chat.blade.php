@@ -1,6 +1,13 @@
 <x-filament::page>
 
-    <div style="max-height: 500px; overflow-y: scroll">
+    <script>
+        window.addEventListener('messageSent', event => {
+            const message = document.getElementById('js-conversation-messages');
+            message.scrollTop = message.scrollHeight;
+        });
+    </script>
+
+    <div id="js-conversation-messages" style="max-height: 500px; overflow-y: scroll">
     @foreach($conversationMessages as $message)
     <div style="margin-top:10px" class="p-4 w-full text-gray-900 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-300" role="alert">
         <div class="flex items-center">
