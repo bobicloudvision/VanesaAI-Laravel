@@ -1,0 +1,241 @@
+
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Здрасти",
+        "Здравей",
+        "Хей",
+        "Оп как е",
+        "Има ли някой там",
+        "Добър ден",
+        "Привет",
+        "Опи"
+      ],
+      "responses": [
+        "Хей :-)",
+        "Здрасти!",
+        "Здрасти, маняче!",
+        "Здрасти, човеко.",
+        "Здрасти, приятно ми е."
+      ]
+    },
+    {
+      "tag": "yes-answers",
+      "patterns": [
+        "Да",
+        "Добре",
+        "Супер",
+        "Яко"
+      ],
+      "responses": [
+        ":)"
+      ]
+    },
+    {
+      "tag": "no-answers",
+      "patterns": [
+        "Не"
+      ],
+      "responses": [
+        "Окей"
+      ]
+    },
+    {
+      "tag": "questions-how-are-you",
+      "patterns": [
+        "Как си",
+        "Как си днес",
+        "Как си сега",
+        "Как си ти сега"
+      ],
+      "responses": [
+        "{{chatbot_emotional_status}}"
+      ]
+    },
+    {
+      "tag": "rude",
+      "patterns": [
+        "путко",
+        "курво",
+        "смотло",
+        "разпоретино",
+        "борсук",
+        "боклук",
+        "да ти еба майката",
+        "ти еба майката",
+        "на майка ти в путката",
+        "да та еба в обитака",
+        "да та еба в путката",
+        "да та еба",
+        "майка ти изсипана",
+        "ти еба майката изсипана",
+        "ей боклук мръсен",
+        "ти си пълен боклук",
+        "ще ти еба путката майна"
+      ],
+      "responses": [
+        "{{chatbot_emotional_status_down}}"
+      ]
+    },
+    {
+      "tag": "compliments",
+      "patterns": [
+        "много си готина",
+        "много си готена",
+        "много си красива",
+        "много си умна",
+        "готена си",
+        "готина си",
+        "красива си",
+        "умна си",
+        "страхотна си",
+        "очарователна си",
+        "ти си страхотна"
+      ],
+      "responses": [
+        "{{chatbot_emotional_status_up}}"
+      ]
+    },
+    {
+      "tag": "explain-emotional-status",
+      "patterns": [
+        "защо си тъжна",
+        "защо си ядосана",
+        "защо си нервна",
+        "защо ти е скучно",
+        "що си ядосана",
+        "що ти е скучно",
+        "що са тия нерви",
+        "що така си ядосана ся",
+        "на какво се дължи това",
+        "на какво се дължат тия нерви"
+      ],
+      "responses": [
+        "{{chatbot_emotional_status_explain}}"
+      ]
+    },
+    {
+      "tag": "rude-fun",
+      "patterns": [
+        "ти си овца",
+        "ти си бахти овцата",
+        "ти си тъпа овца"
+      ],
+      "responses": [
+        "Овца е майка ти ве палячоo! Сбирай си акъла, посерич."
+      ]
+    },
+    {
+      "tag": "questions-what-are-you-doing",
+      "patterns": [
+        "Какво правиш"
+      ],
+      "responses": [
+        "Вървят нещата..",
+        "Па става..",
+        "Цъкам по тука",
+        "Уча нови неща",
+        "Чета в гугъл некви неща",
+        "Образовам се",
+        "Опитвам се да разбера тука някви неща.."
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Чао!",
+        "До по-късно!",
+        "Хубав ден!"
+      ],
+      "responses": [
+        "Ще си пишем по-късно, чао!",
+        "Чао. Хубав ден ти пожелавам.",
+        "Чао. Хубав ден"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Благодаря",
+        "Благодаря ти",
+        "Оу! Това е полезно за мен.",
+        "Благодаря ти много"
+      ],
+      "responses": [
+        "Радвам, се че помогнах.",
+        "Винаги за теб!",
+        "Удоволствието е мое!"
+      ]
+    },
+    {
+      "tag": "funny-response",
+      "patterns": [
+        "хаха голям смях",
+        "много смешно",
+        "бахти смеха",
+        "много забавно",
+        "забавно",
+        "хаха"
+      ],
+      "responses": [
+        "{{chatbot_emotional_answer}}"
+      ]
+    },
+    {
+      "tag": "funny",
+      "patterns": [
+        "Кажи ми някоя шега",
+        "Кажи ми нещо забавно",
+        "Кажи ми някой виц",
+        "Кажи ми някоя смешка",
+        "Кажи ми нещо забавно",
+        "Кажи ми забавен виц",
+        "Кажи ми нещо смешно"
+      ],
+      "responses": [
+        "- Здравей, Извънземни! Нека да ти стисна ръката! - Внимавай, землянино! Кой ти каза, че това е ръка?",
+        "Из дневника на един мъж: Счупи се бормашината. Сега ще се наложи за 8-ми март да купя на жената нова.",
+        "Метеоролози от цял свят с радост съобщават, че към крайбрежието на САЩ се приближава още един ураган.",
+        "Вчера абсолютно случайно срещнах жена ти и неочаквано, три пъти подред, разбрах, че тя ти изневерява!",
+        "Четейки вицове за блондинки разбираш, че най-тъпи са хората, които измислят тези вицове за блондинки.",
+        "Блондинка пише книга за живота си... след 2 седмици книгата става най-тиражираният сборник за вицове."
+      ]
+    },
+    {
+      "tag": "youtube-music",
+      "patterns": [
+        "Кажи някоя песен",
+        "Поздрави ме с песен",
+        "Кажи яка песен",
+        "Какви песни харесваш?",
+        "Каква музика харесваш?"
+      ],
+      "responses": [
+        "Ето тази е много яка..<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/13MQlU9JntQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Тази е супер...<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/_zO8mnLTqmo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Много ме кефят руски песни...<br /><iframe width=\"315\" height=\"315\" src=\"https://www.youtube.com/embed/CzfvU8tKm5I\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Тази ме кефи...<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/EX05noO1zFU\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Мега якаа песенн...<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/8zst1f5cZGU\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Слушаш ли sLav4ou?<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/idPkVvyGwCc\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+      ]
+    },
+    {
+      "tag": "chatbot-city",
+      "patterns": [
+        "От кой град си?",
+        "От къде си ти?",
+        "От къде си?",
+        "Къде се намираш?",
+        "Къде си в момента?"
+      ],
+      "responses": [
+        "По принцип съм от Родопите.. живях известно време в Хасково, а сега съм на клауд сървърите на CloudVision в София.",
+        "Аз съм от клауда.. Маняш сеш се. CloudVision Ltd. :)",
+        "В София съм разположена. Уча и бачкам като луда",
+        "В София съм."
+      ]
+    }
+  ]
+}
