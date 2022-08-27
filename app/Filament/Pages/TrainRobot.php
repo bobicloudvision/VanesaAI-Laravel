@@ -31,8 +31,7 @@ class TrainRobot extends Page
         }
 
         $this->log = $process->getOutput();
-
-       // $this->log = 'Done!';
+        $this->log = str_replace(PHP_EOL, '<br />', $this->log);
 
     }
 }
