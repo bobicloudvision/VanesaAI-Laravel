@@ -65,7 +65,7 @@ class RobotConversationCheck extends Command
                  }*/
             }
 
-            sleep(30);
+            sleep(10);
         }
 
         return 0;
