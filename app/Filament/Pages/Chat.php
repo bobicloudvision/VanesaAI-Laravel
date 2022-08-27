@@ -66,9 +66,8 @@ class Chat extends Page
         $message = new ConversationMessage();
         $message->conversation_id = $findConversation->id;
         $message->message = $robotResponse;
-        $message->send_by = ConversationMessage::SEND_BY_USER;
+        $message->send_by = ConversationMessage::SEND_BY_ROBOT;
         $message->save();
-
 
         $this->message = '';
         $this->updateConversationMessage();
