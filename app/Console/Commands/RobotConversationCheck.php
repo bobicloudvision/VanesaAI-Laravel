@@ -49,6 +49,7 @@ class RobotConversationCheck extends Command
                     $newMessage->send_by = ConversationMessage::SEND_BY_ROBOT;
                     $newMessage->conversation_id = $conversation->id;
                     $newMessage->message = $robotResponse;
+                    $newMessage->status = ConversationMessage::STATUS_SENT;
                     $newMessage->save();
                 }
 
@@ -58,12 +59,13 @@ class RobotConversationCheck extends Command
                      $newMessage->send_by = ConversationMessage::SEND_BY_ROBOT;
                      $newMessage->conversation_id = $conversation->id;
                      $newMessage->message = 'Защо млъкна?';
+                     $newMessage->status = ConversationMessage::STATUS_SENT;
                      $newMessage->save();
 
                  }*/
             }
 
-            sleep(60);
+            sleep(30);
         }
 
         return 0;

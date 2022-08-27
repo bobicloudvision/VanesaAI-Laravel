@@ -45,6 +45,7 @@ class Chat extends Page
         $message->conversation_id = $findConversation->id;
         $message->message = $this->message;
         $message->send_by = ConversationMessage::SEND_BY_USER;
+        $message->status = ConversationMessage::STATUS_SENT;
         $message->save();
 
         $this->message = '';
