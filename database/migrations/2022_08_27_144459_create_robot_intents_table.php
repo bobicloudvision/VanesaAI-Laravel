@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('robot_intents', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('tag');
 
             $table->timestamps();

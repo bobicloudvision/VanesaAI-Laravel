@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class RobotIntentResponse extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'value',
+    ];
 }
