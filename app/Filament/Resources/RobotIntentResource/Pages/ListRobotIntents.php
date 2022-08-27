@@ -21,6 +21,11 @@ class ListRobotIntents extends ListRecords
     protected function getActions(): array
     {
         return [
+            Actions\Action::make('train_robot')
+                ->label('Train Robot')
+                ->icon('heroicon-o-collection')
+                ->url('train-robot'),
+
             Actions\CreateAction::make(),
         ];
     }

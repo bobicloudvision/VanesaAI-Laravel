@@ -97,7 +97,7 @@ class RobotIntentResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            
+
         ];
     }
 
