@@ -53,7 +53,7 @@ class RobotConversationCheck extends Command
                     $newMessage->save();
                 }
 
-                /* if ($findMessage->send_by == ConversationMessage::SEND_BY_ROBOT) {
+                if ($findMessage->send_by == ConversationMessage::SEND_BY_ROBOT) {
 
                      $newMessage = new ConversationMessage();
                      $newMessage->send_by = ConversationMessage::SEND_BY_ROBOT;
@@ -62,7 +62,7 @@ class RobotConversationCheck extends Command
                      $newMessage->status = ConversationMessage::STATUS_SENT;
                      $newMessage->save();
 
-                 }*/
+                 }
             }
 
             sleep(10);
