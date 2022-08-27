@@ -1,9 +1,8 @@
 <x-filament::page>
 
-
-
-    <div id="toast-notification" class="p-4 w-full text-gray-900 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-300" role="alert">
-
+    <div style="max-height: 500px; overflow-y: scroll">
+    @foreach($conversationMessages as $message)
+    <div style="margin-top:10px" class="p-4 w-full text-gray-900 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-300" role="alert">
         <div class="flex items-center">
             <div class="inline-block relative shrink-0">
                 <img class="w-12 h-12 rounded-full" src="{{url('avatar.jpeg')}}" alt="">
@@ -13,13 +12,14 @@
             </span>
             </div>
             <div class="ml-3 text-sm font-normal">
-                <div class="text-sm font-semibold text-gray-900 dark:text-white">Bonnie Green</div>
-                <div class="text-sm font-normal">commmented on your photo</div>
-                <span class="text-xs font-medium text-blue-600 dark:text-blue-500">a few seconds ago</span>
+                <div class="text-sm font-semibold text-gray-900 dark:text-white">{{$message->user_id}}</div>
+                <div class="text-sm font-normal">{{$message->message}}</div>
+                <span class="text-xs font-medium text-blue-600 dark:text-blue-500">{{$message->created_at}}</span>
             </div>
         </div>
     </div>
-
+    @endforeach
+    </div>
 
     <x-filament::card class="col-span-12">
 

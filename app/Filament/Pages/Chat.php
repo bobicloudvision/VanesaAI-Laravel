@@ -13,10 +13,25 @@ class Chat extends Page
     protected static string $view = 'filament.pages.chat';
 
     public $message = '';
+    public $conversationMessages = [];
+
+    public function mount()
+    {
+        $this->updateConversationMessage();
+    }
+
+    public function updateConversationMessage()
+    {
+        $sessionId = request()->session()->getId();
+
+        $findConversation = Conversation::where('session_id', $sessionId)->first();
+        if ($findConversation != null) {
+            $this->conversationMessages = ConversationMessage::where('conversation_id', $findConversation->id)->get();
+        }
+    }
 
     public function sendMessage(): void
     {
-
         $sessionId = request()->session()->getId();
 
         $findConversation = Conversation::where('session_id', $sessionId)->first();
@@ -33,5 +48,9 @@ class Chat extends Page
         $message->save();
 
         $this->message = '';
+
+        $this->updateConversationMessage();
+
     }
+
 }
