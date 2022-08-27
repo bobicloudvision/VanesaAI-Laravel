@@ -45,8 +45,8 @@ class UserPersonalityResource extends Resource
                 // ...
             ])
             ->filters([
-                Tables\Filters\Filter::make('verified')
-                    ->query(fn (Builder $query): Builder => $query->whereNotNull('email_verified_at')),
+                Tables\Filters\Filter::make('Registered')
+                    ->query(fn (Builder $query): Builder => $query->whereNotNull('user_id')),
                 // ...
             ])
             ->actions([
