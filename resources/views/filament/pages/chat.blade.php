@@ -9,21 +9,34 @@
 
     <div id="js-conversation-messages" style="max-height: 500px; overflow-y: scroll">
     @foreach($conversationMessages as $message)
-    <div style="margin-top:10px; @if($message->send_by == \App\Models\ConversationMessage::SEND_BY_USER) background:#fff; @else background:#eab308; color:#fff; @endif" class="p-4 w-full text-gray-900 rounded-lg shadow dark:bg-gray-800 dark:text-gray-300" role="alert">
+            <x-filament::card class="col-span-12" style="margin-top:20px">
         <div class="flex items-center">
-            <div class="inline-block relative shrink-0">
-                <img class="w-12 h-12 rounded-full" src="{{url('avatar.jpeg')}}" alt="">
+            <div class="inline-block relative shrink-0" style="margin-right: 10px">
+
+
+                @if($message->send_by == \App\Models\ConversationMessage::SEND_BY_USER)
+                    <img class="w-12 h-12 rounded-full" src="{{url('avatars/avatar.jpg')}}" alt="">
+                @else
+                    <img class="w-12 h-12 rounded-full" src="{{url('avatars/vanesa.jpg')}}" alt="">
+                @endif
+
                 <span class="inline-flex absolute right-0 bottom-0 justify-center items-center w-6 h-6 bg-blue-600 rounded-full">
                 <span class="sr-only">Message icon</span>
             </span>
             </div>
             <div class="ml-3 text-sm font-normal">
-                <div class="text-sm font-semibold text-gray-900 dark:text-white">{{$message->user_id}}</div>
+
+                @if($message->send_by == \App\Models\ConversationMessage::SEND_BY_USER)
+                <div class="text-sm font-semibold text-gray-900 dark:text-white">You</div>
+                @else
+                    <div class="text-sm font-semibold text-gray-900 text-white">Vanesa</div>
+                @endif
+
                 <div class="text-sm font-normal">{!! $message->message !!}</div>
-                <span class="text-xs font-medium text-blue-600 dark:text-blue-500">{{$message->created_at}}</span>
+                <span class="text-xs font-medium text-blue-600 dark:text-blue-500" style="line-height: 50px">{{$message->created_at}}</span>
             </div>
         </div>
-    </div>
+            </x-filament::card>
     @endforeach
     </div>
 
