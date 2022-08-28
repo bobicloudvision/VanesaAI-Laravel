@@ -26,7 +26,7 @@ class RobotTalk
     public function getResponse()
     {
 
-        $process = new Process([$this->pythonDir, $this->mainDir . '/python/dialog_nltk/chat-input.py', $this->input]);
+        $process = new Process([$this->pythonDir, $this->mainDir . '/python/dialog_nltk/chat-input.py', '-m='.$this->input]);
         $process->run();
 
         if (!$process->isSuccessful()) {

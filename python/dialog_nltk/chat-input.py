@@ -28,8 +28,9 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
-sentence = sys.argv[1]
+sentence = " ".join(sys.argv[1:])
 sentence = tokenize(sentence)
+
 X = bag_of_words(sentence, all_words)
 X = X.reshape(1, X.shape[0])
 X = torch.from_numpy(X).to(device)
