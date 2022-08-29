@@ -28,7 +28,7 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
-sentence = " ".join(sys.argv[1:])
+sentence = input("")
 #print(sentence)
 sentence = tokenize(sentence)
 
