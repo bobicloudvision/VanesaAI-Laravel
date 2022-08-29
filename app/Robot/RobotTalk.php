@@ -36,8 +36,6 @@ class RobotTalk
 
         $robotResponse = $process->getOutput();
 
-        dd($robotResponse);
-
         return $this->parseResponse($robotResponse);
     }
 
