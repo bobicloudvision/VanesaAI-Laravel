@@ -12,13 +12,19 @@ class RobotIntent extends Model
     protected $fillable = [
         'name',
         'tag',
+        'robot_intent_topic_id',
     ];
+
+
+    public function topic()
+    {
+        return $this->belongsTo(RobotIntentTopic::class, 'robot_intent_topic_id');
+    }
 
     public function patterns()
     {
         return $this->hasMany(RobotIntentPattern::class, 'robot_intent_id');
     }
-
 
     public function responses()
     {

@@ -8,6 +8,7 @@ use App\Filament\Resources\RobotIntentResource\Widgets\RobotIntentStats;
 use App\Models\RobotIntent;
 use App\Models\RobotIntentPattern;
 use App\Models\RobotIntentResponse;
+use App\Models\RobotIntentTopic;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -33,7 +34,11 @@ class RobotIntentResource extends Resource
 
                         Forms\Components\TextInput::make('name')
                             ->label('Name')
-                            ->required()
+                            ->required(),
+
+                        Forms\Components\Select::make('robot_intent_topic_id')
+                            ->relationship('topic', 'name')
+                            ->searchable(),
                 ])
                 ->columns(1)
                 ->columnSpan(['lg' => fn (?RobotIntent $record) => $record === null ? 3 : 2]),
@@ -72,6 +77,13 @@ class RobotIntentResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
+
+                Tables\Columns\TextColumn::make('Topic')
+                    ->getStateUsing(fn ($record): ?string => RobotIntentTopic::where('id',$record->robot_intent_topic_id)->first()->name ?? null)
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+
 
             ])
             ->filters([
