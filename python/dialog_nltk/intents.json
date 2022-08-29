@@ -292,6 +292,16 @@
             "responses": [
                 "__robot_action_delete_conversation__"
             ]
+        },
+        {
+            "tag": "compliments-en",
+            "patterns": [
+                "super si",
+                "you are awesome"
+            ],
+            "responses": [
+                "thank you! you too!"
+            ]
         }
     ]
 }
