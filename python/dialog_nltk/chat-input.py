@@ -29,6 +29,7 @@ model.load_state_dict(model_state)
 model.eval()
 
 sentence = " ".join(sys.argv[1:])
+#print(sentence)
 sentence = tokenize(sentence)
 
 X = bag_of_words(sentence, all_words)
@@ -48,4 +49,4 @@ if prob.item() > 0.75:
         if tag == intent["tag"]:
             print(random.choice(intent['responses']))
 else:
-    print("{{RobotTalk::noResponse($conversation_id)}}")
+    print("__robot_action_no_response__")
