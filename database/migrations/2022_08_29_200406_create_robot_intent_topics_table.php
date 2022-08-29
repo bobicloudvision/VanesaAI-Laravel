@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('conversations', function (Blueprint $table) {
+        Schema::create('robot_intent_topics', function (Blueprint $table) {
             $table->id();
-            $table->string('session_id');
-            $table->string('robot_intent_topic_id');
-            $table->string('directed_to');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conversations');
+        Schema::dropIfExists('robot_intent_topics');
     }
 };

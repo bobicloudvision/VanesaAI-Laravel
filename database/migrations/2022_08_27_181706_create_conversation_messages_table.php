@@ -19,6 +19,10 @@ return new class extends Migration
             $table->integer('conversation_id');
 
             $table->string('send_by');
+
+            // If we have group conversation with bot, we must reply only when is sent to robot
+            $table->string('directed_to');
+
             $table->string('status');
 
             $table->integer('user_id')->nullable();
