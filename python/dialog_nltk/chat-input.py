@@ -29,8 +29,8 @@ model.load_state_dict(model_state)
 model.eval()
 
 sentence = input("")
-#print(sentence)
 sentence = tokenize(sentence)
+#print(sentence)
 
 X = bag_of_words(sentence, all_words)
 X = X.reshape(1, X.shape[0])
