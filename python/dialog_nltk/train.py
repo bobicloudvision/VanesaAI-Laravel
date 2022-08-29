@@ -35,9 +35,9 @@ all_words = [stem(w) for w in all_words if w not in ignore_words]
 all_words = sorted(set(all_words))
 tags = sorted(set(tags))
 
-#print(len(xy), "patterns")
-#print(len(tags), "tags:", tags)
-#print(len(all_words), "unique stemmed words:", all_words)
+print(len(xy), "patterns")
+print(len(tags), "tags:", tags)
+print(len(all_words), "unique stemmed words:", all_words)
 
 # create training data
 X_train = []
@@ -54,11 +54,11 @@ X_train = np.array(X_train)
 y_train = np.array(y_train)
 
 # Hyper-parameters
-num_epochs = 1000
-batch_size = 8
-learning_rate = 0.001
+num_epochs = 5000
+batch_size = 10
+learning_rate = 0.0001
 input_size = len(X_train[0])
-hidden_size = 8
+hidden_size = 10
 output_size = len(tags)
 print(input_size, output_size)
 
