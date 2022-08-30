@@ -11,11 +11,33 @@ class SimpleRecognizeTopic
 
     public function setInput(string $text)
     {
+        $text = str_replace(',', '', $text);
+        $text = str_replace('.', '', $text);
+        $text = str_replace('!', '', $text);
+        $text = str_replace('?', '', $text);
+        $text = mb_strtolower($text);
+        $text = trim($text);
+
         $this->input = $text;
     }
 
     public function getResponse()
     {
+        $response = '';
+        $textBlocks = $this->getTextBlocks();
+        if (!empty($textBlocks)) {
+            foreach ($textBlocks as $block) {
+                $response .= $block['response'] . '<br />';
+            }
+        }
+
+        return $response;
+    }
+
+    public function getTextBlocks()
+    {
+        $textBlocks = [];
+
         $getRobotIntentTopics = RobotIntentTopic::all();
         foreach ($getRobotIntentTopics as $getRobotIntentTopic) {
             $getRobotIntents = RobotIntent::where('robot_intent_topic_id', $getRobotIntentTopic->id)->get();
@@ -24,29 +46,23 @@ class SimpleRecognizeTopic
             }
             foreach ($getRobotIntents as $intent) {
                 foreach ($intent->patterns()->get() as $pattern) {
-
-                    $valueMatched = false;
                     $value = $pattern->cleanedValue();
-
-                    if ($value == $this->input) {
-                        $valueMatched = true;
+                    if (mb_strpos($this->input, $value) !== false) {
+                        $randomResponse = [];
+                        foreach ($intent->responses()->get() as $response) {
+                            $randomResponse[] = $response->value;
+                        }
+                        shuffle($randomResponse);
+                        $textBlocks[$intent->id] = [
+                            'pattern' => $value,
+                            'response' => $randomResponse[0],
+                        ];
                     }
-                    if (!$valueMatched) {
-                        continue;
-                    }
-
-                    $randomResponse = [];
-                    foreach ($intent->responses()->get() as $response) {
-                        $randomResponse[] = $response->value;
-                    }
-                    shuffle($randomResponse);
-                    return $randomResponse[0];
                 }
             }
         }
 
-        dump($this->input);
-
-        return $this->input;
+        return $textBlocks;
     }
+
 }
