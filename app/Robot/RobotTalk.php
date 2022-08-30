@@ -3,6 +3,7 @@ namespace App\Robot;
 
 use App\Models\RobotIntentTopic;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
@@ -78,6 +79,7 @@ class RobotTalk
 
     private function parseResponse($text)
     {
+        $text = str_replace('__user_name__', 'Божидар', $text);
         $text = str_replace('__robot_name__', 'Ванеса', $text);
         $text = str_replace('__robot_action_emotional_status__', 'Днес съм много добре!', $text);
 
