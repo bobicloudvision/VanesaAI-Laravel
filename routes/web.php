@@ -22,7 +22,7 @@ Route::get('/test', function () {
 
     $simpleRecognize = new SimpleRecognizeTopic();
     $simpleRecognize->setInput('
-   Здравей как си днес какво правиш
+     Здравей кажи ми някой виц и ме поздрави с песен
     ');
     $response = $simpleRecognize->getResponse();
 

@@ -51,8 +51,23 @@ class SimpleRecognizeTopic
             }
             foreach ($getRobotIntents as $intent) {
                 foreach ($intent->patterns()->get() as $pattern) {
+
                     $value = $pattern->cleanedValue();
-                    if (mb_strpos($input, $value) !== false) {
+                    $recognized = false;
+                    $expWordsOfPattern = explode(' ', $value);
+                    $expWordsOfInput = explode(' ', $input);
+
+                    if (count($expWordsOfPattern) > 1) {
+                        if (mb_strpos($input, $value) !== false) {
+                            $recognized = true;
+                        }
+                    } else {
+                        if (in_array($value, $expWordsOfInput)) {
+                            $recognized = true;
+                        }
+                    }
+
+                    if ($recognized) {
                         $input = str_replace($value, '', $input);
                         $randomResponse = [];
                         foreach ($intent->responses()->get() as $response) {
@@ -70,18 +85,17 @@ class SimpleRecognizeTopic
 
         $inputSeperated = $this->input;
         foreach ($textBlocks as $block) {
-            $inputSeperated = str_replace($block['pattern'],'{'.$block['pattern'] .'}', $inputSeperated);
+            $inputSeperated = str_replace( $block['pattern'],'{'.$block['pattern'] .'}', $inputSeperated);
         }
         $inputSeperatedMatches = [];
         preg_match_all('/{(.*?)}/', $inputSeperated, $inputSeperatedMatches);
-
 
         $reorderedTextBlocks = [];
         foreach ($textBlocks as $block) {
             foreach ($inputSeperatedMatches[1] as $i=>$seperatedMatch) {
                 if ($block['pattern'] == $seperatedMatch) {
                     $block['order'] = $i;
-                    $reorderedTextBlocks[] = $block;
+                    $reorderedTextBlocks[md5($block['pattern'])] = $block;
                 }
             }
         }
