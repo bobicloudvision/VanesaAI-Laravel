@@ -47,6 +47,7 @@ class RobotTalk
                 continue;
             }
 
+            dump($process->getCommandLine());
             dump([$getRobotIntentTopic->name,$this->input, $robotResponse]);
         }
 
