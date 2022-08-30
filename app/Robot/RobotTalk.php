@@ -26,32 +26,20 @@ class RobotTalk
 
     public function getResponse()
     {
-        $workDir = $this->mainDir . '/python/dialog_nltk';
+        $workDir = $this->mainDir . '/python/chatterbot';
 
-        $getRobotIntentTopics = RobotIntentTopic::all();
-        foreach ($getRobotIntentTopics as $getRobotIntentTopic) {
+        $process = new Process([$this->pythonDir, $workDir . '/chat.py']);
+        $process->setWorkingDirectory($workDir);
+        $process->setInput($this->input);
+        $process->run();
 
-            $topicFolder = $this->mainDir . '/python/dialog_nltk/topics/'.$getRobotIntentTopic->slug();
-
-            $process = new Process([$this->pythonDir, $workDir . '/chat-input.py', $topicFolder]);
-            $process->setWorkingDirectory($workDir);
-            $process->setInput($this->input);
-            $process->run();
-
-            if (!$process->isSuccessful()) {
-                throw new ProcessFailedException($process);
-            }
-
-            $robotResponse = $process->getOutput();
-            if (strpos($robotResponse, '__robot_action_no_response__') !== false) {
-                continue;
-            }
-
-            dump($process->getCommandLine());
-            dump([$getRobotIntentTopic->name,$this->input, $robotResponse]);
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
         }
 
-      //  return $this->parseResponse($robotResponse);
+        $robotResponse = $process->getOutput();
+
+        return $this->parseResponse($robotResponse);
     }
 
     /**
