@@ -21,11 +21,19 @@ class RobotTalk
 
     public function setInput(string $text)
     {
+        $text = trim($text);
+
         $this->input = $text;
     }
 
     public function getResponse()
     {
+
+        $simpleRecognize = new SimpleRecognizeTopic();
+        $simpleRecognize->setInput($this->input);
+        return $simpleRecognize->getResponse();
+
+
         $workDir = $this->mainDir . '/python/chatterbot';
 
         $process = new Process([$this->pythonDir, $workDir . '/chat.py']);

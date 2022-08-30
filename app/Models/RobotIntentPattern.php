@@ -12,4 +12,16 @@ class RobotIntentPattern extends Model
     protected $fillable = [
         'value',
     ];
+
+    public function cleanedValue()
+    {
+        $patternValue = str_replace(',','', $this->value);
+        $patternValue = str_replace('.','', $patternValue);
+        $patternValue = str_replace('!','', $patternValue);
+        $patternValue = str_replace('?','', $patternValue);
+        $patternValue = mb_strtolower($patternValue);
+        $patternValue = trim($patternValue);
+
+        return $patternValue;
+    }
 }
