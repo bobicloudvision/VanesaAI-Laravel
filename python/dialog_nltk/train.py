@@ -1,6 +1,7 @@
 import numpy as np
 import json
 import os
+import sys
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
@@ -8,7 +9,7 @@ from torch.utils.data import Dataset, DataLoader
 from nltk_utils import bag_of_words, tokenize, stem
 from model import NeuralNet
 
-chatbotFolder = os.path.dirname(os.path.abspath(__file__))
+chatbotFolder = sys.argv[1]
 with open(chatbotFolder + '/intents.json', 'r', encoding="utf8") as f:
     intents = json.load(f)
 
@@ -121,7 +122,7 @@ data = {
     "tags": tags
 }
 
-FILE = "data.pth"
+FILE = chatbotFolder + "/brain.pth"
 torch.save(data, FILE)
 
 print(f'training complete. file saved to {FILE}')
