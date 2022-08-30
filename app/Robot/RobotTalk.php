@@ -31,8 +31,8 @@ class RobotTalk
 
         $simpleRecognize = new SimpleRecognizeTopic();
         $simpleRecognize->setInput($this->input);
-        return $simpleRecognize->getResponse();
-
+        $robotResponse = $simpleRecognize->getResponse();
+        return $this->parseResponse($robotResponse);
 
         $workDir = $this->mainDir . '/python/chatterbot';
 
@@ -78,13 +78,10 @@ class RobotTalk
 
     private function parseResponse($text)
     {
-        $data = [];
-        $data['robot_name'] = 'Ванеса';
-        $data['time_now'] = date("H:i:s");
-        $data['date_now'] = date("Y-m-d");
-        $data['conversation_id'] = 4;
+        $text = str_replace('__robot_name__', 'Ванеса', $text);
+        $text = str_replace('__robot_action_emotional_status__', 'Днес съм много добре!', $text);
 
-        return Blade::render($text, $data);
+        return $text;
     }
 
     private function getMainDir()
