@@ -44,8 +44,8 @@ conversations:';
                 foreach ($intent->patterns()->get() as $pattern) {
                     foreach ($intent->responses()->get() as $response) {
                         $saveYml .= '
-- - ' . $pattern->value . '
-- ' . $response->value;
+  - - ' . $pattern->value . '
+    - ' . $response->value;
                     }
                 }
             }
