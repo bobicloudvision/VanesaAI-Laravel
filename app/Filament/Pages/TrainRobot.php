@@ -35,7 +35,7 @@ class TrainRobot extends Page
             if ($getRobotIntents->count() == 0) {
                 continue;
             }
-            
+
             foreach ($getRobotIntents as $intent) {
                 $saveIntents[] = [
                     'tag' => $intent->tag,
@@ -50,7 +50,7 @@ class TrainRobot extends Page
             // which python
             $getPythonPath = '/Users/bobi/opt/anaconda3/bin/python';
 
-            $process = new Process([$getPythonPath, $mainDir . '/python/dialog_nltk/train.py']);
+            $process = new Process([$getPythonPath, $mainDir . '/python/dialog_nltk/train.py', dirname($intentsJsonFile)]);
             $process->run();
 
             if (!$process->isSuccessful()) {

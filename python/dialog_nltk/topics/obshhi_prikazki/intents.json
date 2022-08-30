@@ -1,0 +1,34 @@
+{
+    "intents": [
+        {
+            "tag": "questions-how-are-you",
+            "patterns": [
+                "Как си",
+                "Как си днес",
+                "Как си сега",
+                "Как си ти сега"
+            ],
+            "responses": [
+                "__robot_action_emotional_status__"
+            ]
+        },
+        {
+            "tag": "explain-emotional-status",
+            "patterns": [
+                "защо си тъжна",
+                "защо си ядосана",
+                "защо си нервна",
+                "защо ти е скучно",
+                "що си ядосана",
+                "що ти е скучно",
+                "що са тия нерви",
+                "що така си ядосана ся",
+                "на какво се дължи това",
+                "на какво се дължат тия нерви"
+            ],
+            "responses": [
+                "__robot_action_emotional_status_explain__"
+            ]
+        }
+    ]
+}
