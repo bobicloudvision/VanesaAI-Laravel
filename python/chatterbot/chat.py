@@ -6,7 +6,7 @@ chatbot = ChatBot('Vanesa', storage_adapter='chatterbot.storage.SQLStorageAdapte
                                 {
                                    'import_path': 'chatterbot.logic.BestMatch',
                                    'default_response': '__robot_action_no_response__',
-                                 'maximum_similarity_threshold': 0.96
+                                 'maximum_similarity_threshold': 0.99
                                },
                                {
                                     'import_path': 'chatterbot.logic.MathematicalEvaluation',
