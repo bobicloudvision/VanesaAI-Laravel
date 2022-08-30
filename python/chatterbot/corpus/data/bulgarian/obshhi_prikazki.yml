@@ -1,13 +1,13 @@
 categories:
   - obshhi_prikazki
 conversations:
-  - - 'Как си'
+  - - 'как си'
     - '__robot_action_emotional_status__'
-  - - 'Как си днес'
+  - - 'как си днес'
     - '__robot_action_emotional_status__'
-  - - 'Как си сега'
+  - - 'как си сега'
     - '__robot_action_emotional_status__'
-  - - 'Как си ти сега'
+  - - 'как си ти сега'
     - '__robot_action_emotional_status__'
   - - 'защо си тъжна'
     - '__robot_action_emotional_status_explain__'

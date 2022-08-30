@@ -43,9 +43,19 @@ conversations:';
             foreach ($getRobotIntents as $intent) {
                 foreach ($intent->patterns()->get() as $pattern) {
                     foreach ($intent->responses()->get() as $response) {
+
+                        $patternValue = trim($pattern->value);
+                        $patternValue = str_replace(',','', $patternValue);
+                        $patternValue = str_replace('.','', $patternValue);
+                        $patternValue = str_replace('!','', $patternValue);
+                        $patternValue = str_replace('?','', $patternValue);
+                        $patternValue = mb_strtolower($patternValue);
+
+                        $responseValue = trim($response->value);
+
                         $saveYml .= "
-  - - '$pattern->value'
-    - '$response->value'";
+  - - '$patternValue'
+    - '$responseValue'";
                     }
                 }
             }
