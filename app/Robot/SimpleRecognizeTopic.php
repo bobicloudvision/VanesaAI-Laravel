@@ -23,12 +23,15 @@ class SimpleRecognizeTopic
 
     public function getResponse()
     {
-        $response = '';
+
         $textBlocks = $this->getTextBlocks();
-        if (!empty($textBlocks)) {
-            foreach ($textBlocks as $block) {
-                $response .= $block['response'] . '<br />';
-            }
+        if (empty($textBlocks)) {
+            return '__robot_action_no_response__';
+        }
+
+        $response = '';
+        foreach ($textBlocks as $block) {
+            $response .= $block['response'] . '<br />';
         }
 
         return $response;
