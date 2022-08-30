@@ -13,6 +13,6 @@ class SimpleRecognizeTopic
 
     public function getResponse()
     {
-        
+
     }
 }
