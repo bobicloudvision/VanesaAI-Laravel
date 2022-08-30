@@ -50,8 +50,6 @@ class TrainRobot extends Page
             // which python
             $getPythonPath = '/Users/bobi/opt/anaconda3/bin/python';
 
-            dd(dirname($intentsJsonFile));
-
             $process = new Process([$getPythonPath, $mainDir . '/python/dialog_nltk/train.py', dirname($intentsJsonFile)]);
             $process->run();
 
