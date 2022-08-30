@@ -33,7 +33,9 @@ class RobotTalk
         $simpleRecognize = new SimpleRecognizeTopic();
         $simpleRecognize->setInput($this->input);
         $robotResponse = $simpleRecognize->getResponse();
-        return $this->parseResponse($robotResponse);
+        if ($robotResponse !== '__robot_action_no_response__') {
+            return $this->parseResponse($robotResponse);
+        }
 
         $workDir = $this->mainDir . '/python/chatterbot';
 
@@ -47,7 +49,6 @@ class RobotTalk
         }
 
         $robotResponse = $process->getOutput();
-
         return $this->parseResponse($robotResponse);
     }
 
