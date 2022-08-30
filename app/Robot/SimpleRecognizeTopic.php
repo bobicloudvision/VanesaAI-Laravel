@@ -68,7 +68,32 @@ class SimpleRecognizeTopic
             }
         }
 
-        return $textBlocks;
+        $inputSeperated = $this->input;
+        foreach ($textBlocks as $block) {
+            $inputSeperated = str_replace($block['pattern'],'{'.$block['pattern'] .'}', $inputSeperated);
+        }
+        $inputSeperatedMatches = [];
+        preg_match_all('/{(.*?)}/', $inputSeperated, $inputSeperatedMatches);
+
+
+        $reorderedTextBlocks = [];
+        foreach ($textBlocks as $block) {
+            foreach ($inputSeperatedMatches[1] as $i=>$seperatedMatch) {
+                if ($block['pattern'] == $seperatedMatch) {
+                    $block['order'] = $i;
+                    $reorderedTextBlocks[] = $block;
+                }
+            }
+        }
+
+        $block = array_column($reorderedTextBlocks, 'order');
+        array_multisort($block, SORT_ASC, $reorderedTextBlocks);
+
+        return $reorderedTextBlocks;
+    }
+
+    public function findWordPosition($string, $word) {
+
     }
 
 }
