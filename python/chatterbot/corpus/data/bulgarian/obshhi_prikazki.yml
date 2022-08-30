@@ -1,31 +1,31 @@
 categories:
   - obshhi_prikazki
 conversations:
-  - - Как си
-    - __robot_action_emotional_status__
-  - - Как си днес
-    - __robot_action_emotional_status__
-  - - Как си сега
-    - __robot_action_emotional_status__
-  - - Как си ти сега
-    - __robot_action_emotional_status__
-  - - защо си тъжна
-    - __robot_action_emotional_status_explain__
-  - - защо си ядосана
-    - __robot_action_emotional_status_explain__
-  - - защо си нервна
-    - __robot_action_emotional_status_explain__
-  - - защо ти е скучно
-    - __robot_action_emotional_status_explain__
-  - - що си ядосана
-    - __robot_action_emotional_status_explain__
-  - - що ти е скучно
-    - __robot_action_emotional_status_explain__
-  - - що са тия нерви
-    - __robot_action_emotional_status_explain__
-  - - що така си ядосана ся
-    - __robot_action_emotional_status_explain__
-  - - на какво се дължи това
-    - __robot_action_emotional_status_explain__
-  - - на какво се дължат тия нерви
-    - __robot_action_emotional_status_explain__
+  - - 'Как си'
+    - '__robot_action_emotional_status__'
+  - - 'Как си днес'
+    - '__robot_action_emotional_status__'
+  - - 'Как си сега'
+    - '__robot_action_emotional_status__'
+  - - 'Как си ти сега'
+    - '__robot_action_emotional_status__'
+  - - 'защо си тъжна'
+    - '__robot_action_emotional_status_explain__'
+  - - 'защо си ядосана'
+    - '__robot_action_emotional_status_explain__'
+  - - 'защо си нервна'
+    - '__robot_action_emotional_status_explain__'
+  - - 'защо ти е скучно'
+    - '__robot_action_emotional_status_explain__'
+  - - 'що си ядосана'
+    - '__robot_action_emotional_status_explain__'
+  - - 'що ти е скучно'
+    - '__robot_action_emotional_status_explain__'
+  - - 'що са тия нерви'
+    - '__robot_action_emotional_status_explain__'
+  - - 'що така си ядосана ся'
+    - '__robot_action_emotional_status_explain__'
+  - - 'на какво се дължи това'
+    - '__robot_action_emotional_status_explain__'
+  - - 'на какво се дължат тия нерви'
+    - '__robot_action_emotional_status_explain__'

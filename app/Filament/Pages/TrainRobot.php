@@ -43,9 +43,9 @@ conversations:';
             foreach ($getRobotIntents as $intent) {
                 foreach ($intent->patterns()->get() as $pattern) {
                     foreach ($intent->responses()->get() as $response) {
-                        $saveYml .= '
-  - - ' . $pattern->value . '
-    - ' . $response->value;
+                        $saveYml .= "
+  - - '$pattern->value'
+    - '$response->value'";
                     }
                 }
             }

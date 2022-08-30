@@ -1,7 +1,7 @@
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
-chatbot = ChatBot('Vanesa', language='RUS')
+chatbot = ChatBot('Vanesa')
 
 # Get a response to an input statement
 while True:
