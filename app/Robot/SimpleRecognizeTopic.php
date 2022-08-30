@@ -38,6 +38,8 @@ class SimpleRecognizeTopic
     {
         $textBlocks = [];
 
+        $input = $this->input;
+
         $getRobotIntentTopics = RobotIntentTopic::all();
         foreach ($getRobotIntentTopics as $getRobotIntentTopic) {
             $getRobotIntents = RobotIntent::where('robot_intent_topic_id', $getRobotIntentTopic->id)->get();
@@ -47,7 +49,8 @@ class SimpleRecognizeTopic
             foreach ($getRobotIntents as $intent) {
                 foreach ($intent->patterns()->get() as $pattern) {
                     $value = $pattern->cleanedValue();
-                    if (mb_strpos($this->input, $value) !== false) {
+                    if (mb_strpos($input, $value) !== false) {
+                        $input = str_replace($value, '', $input);
                         $randomResponse = [];
                         foreach ($intent->responses()->get() as $response) {
                             $randomResponse[] = $response->value;

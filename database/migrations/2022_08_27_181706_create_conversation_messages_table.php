@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('status');
 
             $table->integer('user_id')->nullable();
-            $table->string('message');
+            $table->longText('message');
 
             $table->timestamps();
         });

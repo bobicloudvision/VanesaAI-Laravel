@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('robot_intent_id');
-            $table->string('value');
+            $table->longText('value');
 
             $table->timestamps();
         });
