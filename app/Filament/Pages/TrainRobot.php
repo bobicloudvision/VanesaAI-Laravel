@@ -3,7 +3,9 @@
 namespace App\Filament\Pages;
 
 use App\Models\RobotIntent;
+use App\Models\RobotIntentTopic;
 use Filament\Pages\Page;
+use Illuminate\Support\Str;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
@@ -20,32 +22,44 @@ class TrainRobot extends Page
 
         $mainDir = dirname(dirname(dirname(__DIR__)));
 
-        $saveIntents = [];
+        $getRobotIntentTopics = RobotIntentTopic::all();
+        foreach ($getRobotIntentTopics as $getRobotIntentTopic) {
 
-        $getRobotIntents = RobotIntent::get();
-        foreach ($getRobotIntents as $intent) {
-            $saveIntents[] = [
-                'tag'=>$intent->tag,
-                'patterns'=>$intent->patterns()->get()->pluck('value')->toArray(),
-                'responses'=>$intent->responses()->get()->pluck('value')->toArray()
-            ];
+            $intentsJsonFile = $mainDir . '/python/dialog_nltk/topics/'.$getRobotIntentTopic->slug().'/intents.json';
+            if (!is_dir(dirname($intentsJsonFile))) {
+                mkdir(dirname($intentsJsonFile));
+            }
+
+            $saveIntents = [];
+            $getRobotIntents = RobotIntent::where('robot_intent_topic_id', $getRobotIntentTopic->id)->get();
+            if ($getRobotIntents->count() == 0) {
+                continue;
+            }
+            
+            foreach ($getRobotIntents as $intent) {
+                $saveIntents[] = [
+                    'tag' => $intent->tag,
+                    'patterns' => $intent->patterns()->get()->pluck('value')->toArray(),
+                    'responses' => $intent->responses()->get()->pluck('value')->toArray()
+                ];
+            }
+
+            $saveIntents = json_encode(['intents' => $saveIntents], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            file_put_contents($intentsJsonFile, $saveIntents);
+
+            // which python
+            $getPythonPath = '/Users/bobi/opt/anaconda3/bin/python';
+
+            $process = new Process([$getPythonPath, $mainDir . '/python/dialog_nltk/train.py']);
+            $process->run();
+
+            if (!$process->isSuccessful()) {
+                throw new ProcessFailedException($process);
+            }
+
+            $this->log = $process->getOutput();
+            $this->log = str_replace(PHP_EOL, '<br />', $this->log);
+
         }
-        $saveIntents = json_encode(['intents'=>$saveIntents], JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
-
-        file_put_contents($mainDir . '/python/dialog_nltk/intents.json', $saveIntents);
-
-        // which python
-        $getPythonPath = '/Users/bobi/opt/anaconda3/bin/python';
-
-        $process = new Process([$getPythonPath, $mainDir . '/python/dialog_nltk/train.py']);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        $this->log = $process->getOutput();
-        $this->log = str_replace(PHP_EOL, '<br />', $this->log);
-
     }
 }
