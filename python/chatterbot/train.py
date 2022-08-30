@@ -7,4 +7,4 @@ chatbot = ChatBot('Vanesa')
 trainer = ChatterBotCorpusTrainer(chatbot)
 
 # Train the chatbot based on the english corpus
-trainer.train("chatterbot_corpus/data/bulgarian/zapoznanstvo.yml")
+trainer.train("corpus/data/bulgarian")
