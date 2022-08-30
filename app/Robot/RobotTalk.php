@@ -1,6 +1,7 @@
 <?php
 namespace App\Robot;
 
+use App\Models\RobotIntentTopic;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -25,21 +26,31 @@ class RobotTalk
 
     public function getResponse()
     {
-
         $workDir = $this->mainDir . '/python/dialog_nltk';
 
-        $process = new Process([$this->pythonDir, $workDir . '/chat-input.py']);
-        $process->setWorkingDirectory($workDir);
-        $process->setInput($this->input);
-        $process->run();
+        $getRobotIntentTopics = RobotIntentTopic::all();
+        foreach ($getRobotIntentTopics as $getRobotIntentTopic) {
 
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
+            $topicFolder = $this->mainDir . '/python/dialog_nltk/topics/'.$getRobotIntentTopic->slug();
+
+            $process = new Process([$this->pythonDir, $workDir . '/chat-input.py', $topicFolder]);
+            $process->setWorkingDirectory($workDir);
+            $process->setInput($this->input);
+            $process->run();
+
+            if (!$process->isSuccessful()) {
+                throw new ProcessFailedException($process);
+            }
+
+            $robotResponse = $process->getOutput();
+            if (strpos($robotResponse, '__robot_action_no_response__') !== false) {
+                continue;
+            }
+
+            dump([$getRobotIntentTopic->name,$this->input, $robotResponse]);
         }
 
-        $robotResponse = $process->getOutput();
-
-        return $this->parseResponse($robotResponse);
+      //  return $this->parseResponse($robotResponse);
     }
 
     /**
