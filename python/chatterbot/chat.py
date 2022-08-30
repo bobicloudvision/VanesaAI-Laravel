@@ -3,12 +3,6 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 
 chatbot = ChatBot('Vanesa')
 
-# Create a new trainer for the chatbot
-trainer = ChatterBotCorpusTrainer(chatbot)
-
-# Train the chatbot based on the english corpus
-trainer.train("chatterbot_corpus/data/bulgarian/movies.yml")
-
 # Get a response to an input statement
 while True:
     try:
