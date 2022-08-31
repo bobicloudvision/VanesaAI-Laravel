@@ -1,4 +1,4 @@
-cd c:/Users/bobkata/Games/VanesaAI-Laravel
+cd C:\Users\bobkata\Games\VanesaAI-Laravel\
 
 git pull
 
