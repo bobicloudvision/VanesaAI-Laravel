@@ -80,7 +80,7 @@ class RobotTalk
 
     private function parseResponse($text)
     {
-        $text = str_replace('__user_name__', 'Божидар', $text);
+        // $text = str_replace('__user_name__', 'Божидар', $text);
         $text = str_replace('__robot_name__', 'Ванеса', $text);
         $text = str_replace('__robot_action_emotional_status__', 'Днес съм много добре!', $text);
 
