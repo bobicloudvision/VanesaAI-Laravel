@@ -37,6 +37,8 @@ class RobotTalk
             return $this->parseResponse($robotResponse);
         }
 
+        return 'Не знам какво да ти кажа...'; 
+
         $workDir = $this->mainDir . '/python/chatterbot';
 
         $process = new Process([$this->pythonDir, $workDir . '/chat.py']);
