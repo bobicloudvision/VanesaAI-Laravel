@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Robot\RobotTalk;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Components\SendMessageToUser;
 use Tests\DuskTestCase;
@@ -124,10 +125,30 @@ class ExampleTest extends DuskTestCase
                     }
                 }
 
-                // dd($cleanedMessages);
+                if (!empty($cleanedMessages)) {
+                    continue;
+                }
 
-                $browser->within(new SendMessageToUser(), function ($browser) {
-                    $browser->sendMessage('hi coool!');
+                $lastMessage = end($cleanedMessages);
+                dd($lastMessage);
+
+                if (isset($lastMessage['message_from']) && $lastMessage['message_from'] =='me') {
+                    continue;
+                }
+
+                $lastMessageText = '';
+                foreach ($cleanedMessages as $message) {
+                    $lastMessageText = $message['message_text'];
+                }
+
+                dd($lastMessageText);
+
+                $talk = new RobotTalk();
+                $talk->setInput($lastMessageText);
+                $robotResponse = $talk->getResponse();
+
+                $browser->within(new SendMessageToUser(), function ($browser) use($robotResponse) {
+                    $browser->sendMessage($robotResponse);
                 });
 
             }

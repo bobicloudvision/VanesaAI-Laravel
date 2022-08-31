@@ -42,7 +42,6 @@ class SendMessageToUser extends BaseComponent
     public function sendMessage(Browser $browser, $message = 'hello')
     {
         // send message
-        $browser->pause(3000);
         $browser->script("
           const nodes5 = document.getElementsByTagName(\"div\");
             for (let i = 0; i < nodes5.length; i++) {
