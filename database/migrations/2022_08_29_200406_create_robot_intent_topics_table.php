@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('robot_intent_topics', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->longText('flow_json');
             $table->timestamps();
         });
     }

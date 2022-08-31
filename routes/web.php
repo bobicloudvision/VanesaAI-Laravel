@@ -26,6 +26,15 @@ Route::get('/conversation-flow/{id}', function ($id) {
     return view('conversation-flow', compact('intents','intentTopic'));
 })->name('flow.edit');
 
+Route::post('/conversation-flow/{id}', function ($id) {
+
+    $intentTopic = \App\Models\RobotIntentTopic::where('id', $id)->first();
+    $intentTopic->flow_json = request()->post('flowJson');
+    $intentTopic->save();
+
+})->name('flow.save');
+
+
 Route::get('/test', function () {
 
     $simpleRecognize = new SimpleRecognizeTopic();

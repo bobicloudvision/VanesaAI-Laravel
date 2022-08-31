@@ -12,6 +12,7 @@ class RobotIntentTopic extends Model
 
     protected $fillable = [
         'name',
+        'flow_json',
     ];
 
     public function slug()
