@@ -37,7 +37,7 @@ class RobotTalk
             return $this->parseResponse($robotResponse);
         }
 
-        return 'Не знам какво да ти кажа...'; 
+        return 'Не знам какво да ти кажа...';
 
         $workDir = $this->mainDir . '/python/chatterbot';
 
@@ -82,9 +82,12 @@ class RobotTalk
 
     private function parseResponse($text)
     {
-        // $text = str_replace('__user_name__', 'Божидар', $text);
+        $text = str_replace('__user_name__', 'човеко', $text);
         $text = str_replace('__robot_name__', 'Ванеса', $text);
         $text = str_replace('__robot_action_emotional_status__', 'Днес съм много добре!', $text);
+        $text = str_replace('__robot_action_emotional_status_up__', '', $text);
+        $text = str_replace('__robot_action_emotional_status_down__', '', $text);
+        $text = str_replace('__robot_action_emotional_status_explain__', '', $text);
 
         return $text;
     }
