@@ -7,7 +7,7 @@ use Laravel\Dusk\Browser;
 use Tests\Browser\Components\SendMessageToUser;
 use Tests\DuskTestCase;
 
-class ExampleTest extends DuskTestCase
+class FacebookBotTest extends DuskTestCase
 {
 
     /**
