@@ -103,7 +103,7 @@ class ExampleTest extends DuskTestCase
                 $cleanedMessages = [];
                 if (!empty($countLastMessages)) {
                     foreach ($countLastMessages as $message) {
-                        if (empty($message['from'])) {
+                        if (empty($message['msg'])) {
                             continue;
                         }
 
