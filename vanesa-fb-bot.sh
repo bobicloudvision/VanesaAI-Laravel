@@ -1,4 +1,8 @@
-cd C:\Users\bobkata\Games\VanesaAI-Laravel\
+
+SCRIPT=$(readlink -f $0)
+SCRIPTPATH=`dirname $SCRIPT`
+
+cd SCRIPTPATH
 
 git pull
 
