@@ -110,6 +110,7 @@ class ExampleTest extends DuskTestCase
                         $userName = $message['from'];
                         if ($message['from'] == 'Изпратихте') {
                             $message['from'] = 'me';
+                            $userName = 'Robot';
                         } else {
                             $message['from'] = 'user';
                         }
