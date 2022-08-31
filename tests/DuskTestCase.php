@@ -31,20 +31,32 @@ abstract class DuskTestCase extends BaseTestCase
      */
     protected function driver()
     {
-        $options = (new ChromeOptions)->addArguments(collect([
-            $this->shouldStartMaximized() ? '--start-maximized' : '--window-size=1920,1080',
-        ])->unless($this->hasHeadlessDisabled(), function ($items) {
-            return $items->merge([
-                '--disable-gpu',
-                //'--headless',
-            ]);
-        })->all());
+        $arguments = [];
+        $arguments[] = '--disable-web-security';
+        $arguments[] = '--disable-xss-auditor';
+        //$arguments[] = '--enable-devtools-experiments';
+        $arguments[] = '--disable-gpu';
+        $arguments[] = '--no-sandbox';
+        $arguments[] = '--ignore-certificate-errors';
+        $arguments[] = '--window-size=1280,1080';
+        $arguments[] = '--disable-popup-blocking';
+
+        //  $arguments[] = '--headless';
+
+        $options = (new ChromeOptions)->addArguments(collect($arguments)
+            ->unless($this->hasHeadlessDisabled(), function ($items) use ($arguments) {
+                if (getenv('GITHUB_RUN_NUMBER')) {
+                    $arguments[] = '--headless';
+                }
+                return $items->merge($arguments);
+
+            })->all());
 
         return RemoteWebDriver::create(
             $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515',
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY, $options
-            )
+            ), 90000, 90000
         );
     }
 
