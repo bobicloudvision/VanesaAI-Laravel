@@ -11,7 +11,7 @@ class FacebookBotTest extends DuskTestCase
 {
 
     // windows: C:\xamp-php81\php\php.exe artisan dusk --filter FacebookBot
-    // schtasks /create /sc MINUTE /tn FacebookChatbot /tr C:\xamp-php81\php\php.exe artisan dusk --filter FacebookBot
+    // schtasks /create /sc MINUTE /tn FacebookChatbot /tr C:\Users\bobkata\Games\VanesaAI-Laravel\vanesa-fb-bot.sh
 
     /**
      * A basic browser test example.
