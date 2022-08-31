@@ -125,13 +125,11 @@ class ExampleTest extends DuskTestCase
                     }
                 }
 
-                if (!empty($cleanedMessages)) {
+                if (empty($cleanedMessages)) {
                     continue;
                 }
 
                 $lastMessage = end($cleanedMessages);
-                dd($lastMessage);
-
                 if (isset($lastMessage['message_from']) && $lastMessage['message_from'] =='me') {
                     continue;
                 }
@@ -140,8 +138,6 @@ class ExampleTest extends DuskTestCase
                 foreach ($cleanedMessages as $message) {
                     $lastMessageText = $message['message_text'];
                 }
-
-                dd($lastMessageText);
 
                 $talk = new RobotTalk();
                 $talk->setInput($lastMessageText);
