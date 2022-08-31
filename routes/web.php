@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/conversation-flow', function () {
+
+    $intents = \App\Models\RobotIntent::all();
+    $intentTopics = \App\Models\RobotIntentTopic::all();
+
+    return view('conversation-flow', compact('intents','intentTopics'));
+});
+
 Route::get('/test', function () {
 
     $simpleRecognize = new SimpleRecognizeTopic();
