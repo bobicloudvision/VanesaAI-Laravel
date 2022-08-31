@@ -18,13 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/conversation-flow', function () {
+Route::get('/conversation-flow/{id}', function ($id) {
 
-    $intents = \App\Models\RobotIntent::all();
-    $intentTopics = \App\Models\RobotIntentTopic::all();
+    $intentTopic = \App\Models\RobotIntentTopic::where('id', $id)->first();
+    $intents = \App\Models\RobotIntent::where('robot_intent_topic_id', $intentTopic->id)->get();
 
-    return view('conversation-flow', compact('intents','intentTopics'));
-});
+    return view('conversation-flow', compact('intents','intentTopic'));
+})->name('flow.edit');
 
 Route::get('/test', function () {
 

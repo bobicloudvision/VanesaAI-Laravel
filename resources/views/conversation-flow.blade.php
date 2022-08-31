@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Drawflow | Simple Flow program libray</title>
+    <title>Conversation Flow | {{$intentTopic->name}}</title>
     <meta name="description"
           content="Simple library for flow programming. Drawflow allows you to create data flows easily and quickly.">
 </head>
@@ -13,7 +13,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
         integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jerosoler/Drawflow@0.0.48/dist/drawflow.min.css">
-<link rel="stylesheet" type="text/css" href="flow/beautiful.css"/>
+<link rel="stylesheet" type="text/css" href="{{url('flow/beautiful.css')}}"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
       integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -22,21 +22,14 @@
 
 
 <header>
-    <h2>Drawflow</h2>
-    <div class="github-link"><a href="https://github.com/jerosoler/Drawflow" target="_blank"><i
-                class="fab fa-github fa-3x"></i></a></div>
-    <div class="them-edit-link"><a href="https://jerosoler.github.io/drawflow-theme-generator/" target="_blank">🎨</a>
-    </div>
+    <h2>{{$intentTopic->name}}</h2>
 </header>
+
 <div class="wrapper">
     <div class="col">
 
         <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="intent">
             <i class="far fa-comment"></i><span> Intent</span>
-        </div>
-
-        <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="intent_topic">
-            <i class="far fa-comment"></i><span> Intent Topic</span>
         </div>
 
         <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="facebook">
@@ -242,26 +235,6 @@
 `;
                 editor.addNode('intent', 1, 1, pos_x, pos_y, 'intent', {}, intent);
                 break;
-
-
-            case 'intent_topic':
-                var intent_topic = `
-              <div>
-                <div class="title-box"><i class="far fa-comment"></i> Intent Topic</div>
-                <div class="box">
-                  <select df-intent_topic>
-                    @foreach($intentTopics as $intentTopic)
-                    <option value="{{$intentTopic->id}}">{{$intentTopic->name}}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-              `;
-            editor.addNode('intent_topic', 0, 1, pos_x, pos_y, 'intent_topic', {}, intent_topic);
-            break;
-
-
-
 
 
 

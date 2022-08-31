@@ -12,6 +12,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\RecordActions\Link;
 
 class RobotIntentTopicResource extends Resource
 {
@@ -37,7 +38,9 @@ class RobotIntentTopicResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\Action::make('Edit Flow')->url('dd'),
+                Tables\Actions\Action::make('Edit Flow')
+                    ->url(fn (RobotIntentTopic $record): string => route('flow.edit', $record))
+                    ->openUrlInNewTab(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
