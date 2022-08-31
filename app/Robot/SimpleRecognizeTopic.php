@@ -31,7 +31,7 @@ class SimpleRecognizeTopic
 
         $response = '';
         foreach ($textBlocks as $block) {
-            $response .= $block['response'] . '<br />';
+            $response .= $block['response'] . PHP_EOL;
         }
 
         return $response;
