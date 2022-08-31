@@ -63,16 +63,66 @@ class ExampleTest extends DuskTestCase
               const nodesMes6 = document.getElementsByTagName(\"div\");
                let userSendedMessages = [];
                 for (let i = 0; i < nodesMes6.length; i++) {
-                  if (nodesMes6[i].getAttribute('data-testid') == 'message-container') {
-                        userSendedMessages.push({
-                            msg: nodesMes6[i].innerText
-                        });
+                  if (nodesMes6[i].getAttribute('data-scope') == 'messages_table') {
+
+                        let userName = '';
+
+                       const nodesMes6_Author = nodesMes6[i].getElementsByTagName(\"h4\");
+                      if (nodesMes6_Author.length > 0) {
+                            userName = nodesMes6_Author.innerText;
+                            for (let imAuthor = 0; imAuthor < nodesMes6_Author.length; imAuthor++) {
+                             userName = nodesMes6[i].getElementsByTagName(\"h4\")[imAuthor].innerText
+                            }
+                       }
+
+                         const nodesMes6_AuthorSpan = nodesMes6[i].getElementsByTagName(\"span\");
+                      if (nodesMes6_AuthorSpan.length > 0) {
+                            userName = nodesMes6_AuthorSpan.innerText;
+                            for (let imAuthorSpan = 0; imAuthorSpan < nodesMes6_AuthorSpan.length; imAuthorSpan++) {
+                             userName = nodesMes6[i].getElementsByTagName(\"span\")[imAuthorSpan].innerText;
+                             break;
+                            }
+                       }
+
+                       if (userName) {
+                            getMsgContainer = nodesMes6[i].getElementsByTagName(\"div\");
+                            for (let imsg = 0; imsg < getMsgContainer.length; imsg++) {
+                               if (getMsgContainer[imsg].getAttribute('data-testid') == 'message-container') {
+                                    userSendedMessages.push({
+                                        from: userName,
+                                        msg: getMsgContainer[imsg].innerText
+                                    });
+                                }
+                            }
+                        }
                    }
                 }
                 return userSendedMessages;
                 ")[0];
 
-                dd($countLastMessages);
+                $cleanedMessages = [];
+                if (!empty($countLastMessages)) {
+                    foreach ($countLastMessages as $message) {
+                        if (empty($message['from'])) {
+                            continue;
+                        }
+
+                        $userName = $message['from'];
+                        if ($message['from'] == 'Изпратихте') {
+                            $message['from'] = 'me';
+                        } else {
+                            $message['from'] = 'user';
+                        }
+
+                        $cleanedMessages[] = [
+                            'message_username'=> $userName,
+                            'message_from'=> $message['from'],
+                            'message_text'=> $message['msg'],
+                        ];
+                    }
+                }
+
+                dd($cleanedMessages);
 
             }
             return;
